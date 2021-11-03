@@ -16,22 +16,11 @@ class ProfileIcon extends React.Component {
   }
   toggle = () =>this.setState(prevState=>({dropdownOpen:!prevState.dropdownOpen}))
 
-  mousingOverItem1=()=>{
-    document.getElementById('fColor1').style.backgroundColor="#d6d6c2"
+  signOutDeleteSession = () =>{
+    window.sessionStorage.removeItem("token");
+    this.props.onRouteChange('signout')
+    //Assignment: Also delete the redis token during signout
   }
-  mousingOutItem1=()=>{
-    document.getElementById('fColor1').style.backgroundColor="white"
-  }
-
-  mousingOverItem2=()=>{
-    document.getElementById('fColor2').style.backgroundColor="#d6d6c2"
-  }
-  mousingOutItem2=()=>{
-    document.getElementById('fColor2').style.backgroundColor="white"
-  }
-
-
-
 
 
   render(){
@@ -45,19 +34,16 @@ class ProfileIcon extends React.Component {
           aria-expanded={dropdownOpen}
         >
           <img src="http://tachyons.io/img/logo.jpg" className="br4 h3 w3 dib" alt="avatar"/>
-        </DropdownToggle >
+        </DropdownToggle>
           <DropdownMenu className="shadow-5 b mr5"  style={{backgroundColor:'rgba(121, 166, 210, 0.5)', borderRadius:'7px'}}>
-            <DropdownItem style={{borderRadius:'7px', color:'green'}}
-            id="fColor1" onMouseOver={this.mousingOverItem1} 
-            onMouseOut={this.mousingOutItem1}
+            <DropdownItem className="hover-red" style={{borderRadius:'7px', color:'green'}}
+            onClick={this.props.toggleModal}
             >
               View Profile
             </DropdownItem>
 
             <DropdownItem style={{borderRadius:'7px', color:'#990000'}}
-            id="fColor2" onMouseOver={this.mousingOverItem2} 
-            onMouseOut={this.mousingOutItem2}
-            onClick={() => this.props.onRouteChange('signout')}
+            onClick={this.signOutDeleteSession}
             >
               Sign-Out
             </DropdownItem>

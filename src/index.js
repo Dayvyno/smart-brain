@@ -6,7 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'tachyons';
 import './index.css';
-// import { Modal } from 'reactstrap';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
